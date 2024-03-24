@@ -3,6 +3,8 @@ import StartGame  from './components/StartGame'
 import './App.css'
 import PlayGame from './components/PlayGame'
 import GameOver from './components/GameOver'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
   const [word, setWord] = useState('')
@@ -14,11 +16,13 @@ function App() {
 
   return (
     <>
+        <Header />
         <div id="game">
           <StartGame setWord={setWord} setUnique={setUnique} unique={unique}/>
           <PlayGame word={word} setGuess={setGuess} guess={guess} setGuessCount={setGuessCount} setWin={setWin} />
         </div>
         { win && <GameOver  guessCount={guessCount} word={word} unique={unique}/>}
+        <Footer />
     </>
   )
 }
