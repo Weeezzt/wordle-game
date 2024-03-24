@@ -1,0 +1,232 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto Slab', sans-serif;
+  line-height: 1.5;
+
+  color: #ebe7ef;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(2,0,36);
+  background: linear-gradient(300deg, rgba(2,0,36,1) 0%, rgba(66,0,80,1) 34%, rgba(88,15,115,1) 60%, rgba(103,7,143,1) 77%, rgba(111,19,148,1) 92%);
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+#game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 40vw;
+}
+
+.game__game-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.game__header{
+  font-size: 2.5em;
+}
+
+.game__game-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #242424;
+  border-radius: 10px;
+  box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  min-height: 40vh;
+}
+
+.game__guesses {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.guess-input {
+  border: none;
+  border-bottom: 1px solid #ebe7ef;
+  background-color: transparent;
+  color: #ebe7ef;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0.5em;
+  width: 100%;
+}
+
+.guess-button, .game__button {
+  border: none;
+  background-color: #59009d;
+  color: #ffffff;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background-color 0.25s;
+  border-radius: 5px;
+} 
+
+.guess-button:hover, .game__button:hover {
+  background-color: #6f00b9;
+}
+
+.game__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  min-height: 38vh;
+  margin-top: 10px;
+  margin-bottom: 10px;
+} 
+
+
+.game__guess-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+} 
+
+li {
+  width: 50px;
+  height: 50px; 
+  border: solid 1px #ebe7ef;
+  color: #ffffff;
+  font-size: 1.2em;
+  font-weight: 500;
+  border-radius: 5px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.yellow {
+  background-color: #afa700;
+}
+
+.green {
+  background-color: #008537;
+}
+
+#game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 113, 109, 0.95);
+  transform: translate(-50%, -50%);
+  animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
+}
+
+.game-over-list {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.game-over-li {
+  width: 100%;
+  height: 38px;
+}
+
+.game-over-input{
+  border: solid;
+  border-radius: 5px;
+  border-bottom: 1px solid #ebe7ef;
+  background-color: transparent;
+  color: #ebe7ef;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0.5em;
+  width: 70%;
+}
+
+.game-over-button{
+  border: none;
+  background-color: #018c95;
+  color: #ffffff;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background-color 0.25s;
+  border-radius: 5px;
+}
+
+.game-over-button:hover {
+  background-color: #00a6b0;
+}
+
+.submit-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
