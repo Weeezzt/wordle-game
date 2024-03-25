@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { feedback } from "../js/start-game";
 
-export default function PlayGame({word, setGuess, guess, setWin, setGuessCount}) {
+export default function PlayGame({word, setGuess, guess, setWin, setGuessCount, setEndTime}) {
     const [guessListElement, setGuessListElement] = useState([])
     const [won, setWon] = useState(false)
     const length = word.length
@@ -18,6 +18,7 @@ export default function PlayGame({word, setGuess, guess, setWin, setGuessCount})
         if(newGuess === word && newGuess !== ''){
             setWin(true)
             setWon(true)
+            setEndTime(Date.now())
         } 
         setGuess('')
     }
@@ -47,8 +48,8 @@ export default function PlayGame({word, setGuess, guess, setWin, setGuessCount})
                 </ul>
             </div>
             <div className="game__guesses">
-                <input type="text" className="guess-input" value={guess} maxLength={length} onChange={handleInputChange} disabled={won}/>
-                <button className="guess-button" onClick={guessHandler} disabled={won}>Guess</button>
+                <input type="text" className="guess-input" value={guess} maxLength={length} onChange={handleInputChange} disabled={won} onKeyDown={(e) => e.key === 'Enter' ? guessHandler() : null}/>
+                <button className="guess-button" onClick={guessHandler}  disabled={won}>Guess</button>
             </div>
         </>
     )

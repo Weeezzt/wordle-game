@@ -54,6 +54,16 @@ h1 {
   }
 }
 
+button:disabled {
+  background-color: #5e5e5e;
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+button:disabled:hover {
+  background-color: #5e5e5e;
+}
+
 #root{
   margin-top: 0;
   width: 100%;
@@ -82,7 +92,6 @@ h1 {
   font-weight: 700;
   margin:0;
   padding: 0;
-
 }
 
 .game-header__nav {
@@ -235,7 +244,7 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 113, 109, 0.95);
+  background-color: rgba(0, 113, 109, 0.98);
   transform: translate(-50%, -50%);
   animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
 }

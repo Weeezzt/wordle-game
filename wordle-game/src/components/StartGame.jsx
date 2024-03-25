@@ -1,7 +1,7 @@
 import { chooseWord, fetchWordList } from "../js/start-game";
 import { useEffect, useState } from "react";
 
-export default function StartGame({setWord, setUnique, unique}) {
+export default function StartGame({setWord, setUnique, unique, setStartTime}) {
     const [gameStarted, setGameStarted] = useState(false)
     const [heading, setHeading] = useState('')
     const [length, setLength] = useState(4)
@@ -34,6 +34,7 @@ export default function StartGame({setWord, setUnique, unique}) {
         setWord(word)
         setHeading('Wordle has begun')
         header = <h1 className='game__header'>{heading}</h1>
+        setStartTime(Date.now())
     }
 
     
