@@ -8,7 +8,24 @@
 </head>
 <body>
     <%- include('./partials/header.ejs') %>
-    <main>
+    <main class="container">
+        <div class="hero">
+            <h1>High Scores</h1>
+        </div>
+        <div class="highscore">
+            <ul class="highscore__list">
+                <% highScores.forEach(function(score) { %>
+                        <li class="highscore__list-item"><%= score.name %></li>
+                        <ul>
+                            <li>You found the word: <%= score.word %></li>
+                            <li>It took <%= score.guesses %> guesses</li>
+                            <li>Word length: <%= score.wordLength %></li>
+                            <li> Total time elapsed: <%= score.time %></li>
+                            <li><%= score.unique === true ? 'Only unique letters' : 'Mixed letters' %></li>
+                        </ul>
+                <% }); %>
+            </ul>
+        </div>
         
     </main>
     <%- include('./partials/footer.ejs') %>

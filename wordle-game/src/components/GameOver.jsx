@@ -1,10 +1,35 @@
+import { useState } from "react";
 
-
-export default function GameOver({guessCount, word, unique, setWin, startTime, endTime}) {
+export default function GameOver({guessCount, word, unique, startTime, endTime}) {
+    const [name, setName] = useState('');
 
     function handleSubmit() {
-        window.location.reload();
+        const scoreInfo = {
+            name: name,
+            guesses: guessCount,
+            time: ((endTime - startTime) / 1000).toFixed(2),
+            unique: unique,
+            wordLength: word.length,
+            word: word
+        };
+        fetch('/api/scores', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(scoreInfo)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Succces', data);
+            window.location.reload()
+        })
     }
+
+    function handleName(e) {
+        setName(e.target.value);
+    }
+
 
     return (
         <>
@@ -20,7 +45,7 @@ export default function GameOver({guessCount, word, unique, setWin, startTime, e
                 </ul>
                 <div className="submit-div">
                     <label htmlFor="name">Enter name</label>
-                    <input name="name" type="text" className="game-over-input" required />
+                    <input name="name" type="text" className="game-over-input" required onChange={handleName}/>
                     <button className="game-over-button" onClick={handleSubmit}>Submit</button>
                 </div>
             </div>

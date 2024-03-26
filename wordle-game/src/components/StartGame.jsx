@@ -15,7 +15,6 @@ export default function StartGame({setWord, setUnique, unique, setStartTime}) {
 
     function handleChange (e) {
         setLength(e.target.value)
-        console.log(length)
     }
     function handleChangeUnique() {
         setUnique(!unique);
@@ -26,8 +25,6 @@ export default function StartGame({setWord, setUnique, unique, setStartTime}) {
 
     let header = <h1 className='game__header'>{heading}</h1>
     function startingGameHandler() {
-        
-        console.log(wordList)
         const word = chooseWord(wordList, length, unique)
         console.log(word)
         setGameStarted(true)

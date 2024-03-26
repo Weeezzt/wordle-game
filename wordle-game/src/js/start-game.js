@@ -11,7 +11,6 @@ const chooseWord = (wordList, wordLength, uniqueLetters) => {
     wordLength = parseInt(wordLength)
     wordList = wordList.filter(word => word.length === wordLength)
 
-    console.log(wordList, wordLength, uniqueLetters)
     // If uniqueLetters is true, filter the wordList to only contain words with unique letters
     if(uniqueLetters) {
         wordList.forEach(word => {
@@ -91,9 +90,9 @@ const feedback = (word, guess) => {
 }
 
 const fetchWordList = async () => {
-    const respone = await fetch('https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json')
+    const respone = await fetch('/api/words')
     const data = await respone.json()
-    const wordList = Object.keys(data)
+    const wordList = data.wordList
     return wordList
 }
 
