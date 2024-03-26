@@ -5,13 +5,15 @@
   "description": "Inlämningsuppgift 2, Wordle med React",
   "main": "backend/index.js",
   "scripts": {
-    "sass:watch": "sass --no-source-map --watch src/main.scss main.css",
-    "sass:compile": "sass --no-source-map src/main.scss main.css",
-    "start": "nodemon app.js"
+    "sass:watch": "sass --no-source-map --watch backend/src/main.scss backend/public/main.css",
+    "sass:compile": "sass --no-source-map backend/src/main.scss backend/public/main.css",
+    "dev": "nodemon app.js",
+    "both2": " concurrently \"npm run dev\" \"npm run sass:watch\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^8.2.2",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",

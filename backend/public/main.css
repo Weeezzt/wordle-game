@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Roboto Slab", sans-serif;
+  line-height: 1.5;
+  color: #ebe7ef;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.header {
+  height: 18vh;
+  background-color: transparent;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+.header__logo {
+  height: 80%;
+  width: 15%;
+}
+.header__nav {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  align-items: center;
+}
+.header__list {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 3%;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+.header__list-item {
+  font-size: 1.5em;
+  font-weight: 500;
+  width: 20%;
+  cursor: pointer;
+  border: none;
+}
+.header__link {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.header__link:hover {
+  border-radius: 5px;
+  border: solid 3px #7625b4;
+  transform: scale(1.02);
+  transition: transform 0.25s;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  color: #ebe7ef;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(300deg, rgb(2, 0, 36) 0%, rgb(66, 0, 80) 34%, rgb(88, 15, 115) 60%, rgb(103, 7, 143) 77%, rgb(111, 19, 148) 92%);
+}
