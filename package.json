@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "name": "wordle-game",
+  "version": "1.0.0",
+  "description": "Inlämningsuppgift 2, Wordle med React",
+  "main": "backend/index.js",
+  "scripts": {
+    "sass:watch": "sass --no-source-map --watch src/main.scss main.css",
+    "sass:compile": "sass --no-source-map src/main.scss main.css",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "sass": "^1.72.0"
+  },
+  "devDependencies": {
+    "express-async-errors": "^3.1.1",
+    "nodemon": "^3.1.0"
+  }
+}
