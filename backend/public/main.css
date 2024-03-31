@@ -119,6 +119,16 @@ body {
   color: white;
   overflow: auto;
 }
+.highscore__list ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+  margin-right: 2px;
+}
+.highscore__list ::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(247, 245, 245, 0.904);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
 .highscore__list-item {
   list-style: none;
   text-decoration: none;

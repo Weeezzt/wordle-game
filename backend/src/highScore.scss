@@ -33,6 +33,18 @@
         width: 50vw;
         color: white;
         overflow: auto;
+
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 10px;
+            margin-right: 2px;
+          }
+          
+          ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: rgba(247, 245, 245, 0.904);
+            -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+          }
     }
 
     &__list-item{

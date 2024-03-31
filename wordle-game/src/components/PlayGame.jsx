@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { feedback } from "../js/start-game";
 
 export default function PlayGame({word, setGuess, guess, setWin, setGuessCount, setEndTime}) {
     const [guessListElement, setGuessListElement] = useState([])
@@ -11,16 +10,27 @@ export default function PlayGame({word, setGuess, guess, setWin, setGuessCount, 
     }
 
     function guessHandler(){
-        const newFeedback = feedback(word, guess)
-        setGuessListElement(prevGuesses => [...prevGuesses, newFeedback])
         const newGuess = guess.toUpperCase()
-        setGuessCount(prevCount => prevCount + 1)
-        if(newGuess === word && newGuess !== ''){
-            setWin(true)
-            setWon(true)
-            setEndTime(Date.now())
-        } 
-        setGuess('')
+
+        fetch('/api/feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({guess: newGuess, word: word})
+        })
+        .then(response => response.json())
+        .then(data => {
+            setGuessListElement(prevGuesses => [...prevGuesses, data.newFeedback])
+            setGuessCount(prevCount => prevCount + 1)
+            if(newGuess === word && newGuess !== ''){
+                setWin(true)
+                setWon(true)
+                setEndTime(Date.now())
+            } 
+            setGuess('')
+        })
+        
     }
 
     

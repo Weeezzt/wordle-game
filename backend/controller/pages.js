@@ -1,6 +1,7 @@
 import getWordList from "../scripts/get-word.js";
+import { feedback, chooseWord } from '../scripts/start-game.js';
 
-const highScores = [];
+const highScores = []
 
 
 export const aboutUsController = async (req, res) => {
@@ -33,8 +34,10 @@ export const HighScoreController = async (req, res) => {
 export const getCorrectWord = async (req, res) => {
     try {
         const wordList = await getWordList();
-
-        res.status(200).json({ wordList })
+        const length = req.query.length;
+        const unique = req.query.unique;
+        const word = chooseWord(wordList, length, unique)
+        res.status(200).json({ word })
     } catch (error) {
         res.status(500).json({msg:error.message})
     }
@@ -48,6 +51,18 @@ export const addHighScore = async (req, res) => {
         highScores.push(highScore);
         console.log(highScores)
         res.status(200).json({ highScore })
+    } catch (error) {
+        res.status(500).json({msg:error.message})
+    }
+}
+
+export const feedbackController = async (req, res) => {
+    try {
+        const word = req.body.word;
+        const guess = req.body.guess;
+
+        const newFeedback = feedback(word, guess)
+        res.status(200).json({ newFeedback })
     } catch (error) {
         res.status(500).json({msg:error.message})
     }
