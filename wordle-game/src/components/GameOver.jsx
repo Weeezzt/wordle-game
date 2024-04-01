@@ -43,11 +43,11 @@ export default function GameOver({guessCount, word, unique, startTime, endTime})
                     <li className='game-over-li'>The length of the word: {word.length}</li>
                     <li className='game-over-li'>The word: {word}</li>
                 </ul>
-                <div className="submit-div">
+                <form className="submit-div" onSubmit={e => { e.preventDefault(); if (name != '')   handleSubmit(); }}>
                     <label htmlFor="name">Enter name</label>
                     <input name="name" type="text" className="game-over-input" required onChange={handleName}/>
-                    <button className="game-over-button" onClick={handleSubmit}>Submit</button>
-                </div>
+                    <button className="game-over-button" type="submit">Submit</button>
+                </form>
             </div>
         </>
     )

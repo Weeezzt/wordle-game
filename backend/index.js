@@ -1,7 +1,10 @@
 import express from "express";
+import "express-async-errors";
 import path from "path";
-import bodyParser from "body-parser";
 import router from "./routes/routes.js";
+import dotenv from "dotenv";
+import { connectDb } from "./db/connect.js";
+dotenv.config();
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -24,6 +27,7 @@ app.use('/', router);
 
 const start = async () => {
     try {
+        await connectDb(process.env.MONGO_URI);
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
         });

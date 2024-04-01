@@ -1,7 +1,6 @@
 import getWordList from "../scripts/get-word.js";
 import { feedback, chooseWord } from '../scripts/start-game.js';
-
-const highScores = []
+import HighScore from '../models/highScoreSchema.js';
 
 
 export const aboutUsController = async (req, res) => {
@@ -24,7 +23,7 @@ export const wordleController = async (req, res) => {
 
 export const HighScoreController = async (req, res) => {
     try {
-        console.log(highScores)
+        const highScores = await HighScore.find({})
         res.status(200).render('HighScore', { highScores })
     } catch (error) {
         res.status(500).json({msg:error.message})
@@ -46,11 +45,8 @@ export const getCorrectWord = async (req, res) => {
 export const addHighScore = async (req, res) => {
     try {
 
-        const highScore = req.body;
-
-        highScores.push(highScore);
-        console.log(highScores)
-        res.status(200).json({ highScore })
+        const NewHighScore = await HighScore.create(req.body)
+        res.status(200).json({ NewHighScore })
     } catch (error) {
         res.status(500).json({msg:error.message})
     }
