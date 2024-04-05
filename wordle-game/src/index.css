@@ -307,3 +307,24 @@ li {
   left: 0;
   bottom: 0;
 }
+
+.reset-button {
+  margin-top: 1rem;
+  width: 10rem;
+  height: 3rem;
+  border: none;
+  background-color: #ba004d;
+  color: #ffffff;
+  font-size: 1.5em;
+  font-weight: 500;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background-color 0.25s;
+  border-radius: 5px;
+}
+
+.reset-button:hover {
+  background-color: #d1005e;
+  transform: scale(1.02);
+  transition: transform 0.25s;
+}

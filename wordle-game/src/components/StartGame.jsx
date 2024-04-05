@@ -1,11 +1,5 @@
 
-import { chooseWord, fetchWordList } from "../js/start-game";
-import { useEffect, useState } from "react";
-
-export default function StartGame({setWord, setUnique, unique, setStartTime}) {
-    const [gameStarted, setGameStarted] = useState(false)
-    const [heading, setHeading] = useState('')
-    const [length, setLength] = useState(4)
+export default function StartGame({gameStarted, setGameStarted, length, setLength, setId, setUnique, unique}) {
 
     function handleChange (e) {
         setLength(e.target.value)
@@ -17,24 +11,22 @@ export default function StartGame({setWord, setUnique, unique, setStartTime}) {
         setUnique(!unique)
     }
 
-    let header = <h1 className='game__header'>{heading}</h1>
+    let heading = 'Wordle'
+
     function startingGameHandler() {
         fetch(`/api/words?length=${length}&unique=${unique}`)
         .then(response  => response.json())
         .then(data => {
-            console.log(data)
-            setWord(data.word)
+            setId(data.gameID)
             setGameStarted(true)
         })
-        setHeading('Wordle has begun')
-        setStartTime(Date.now())
     }
 
     
 
     return(
         <>
-        <h1 className='game__header'>{heading}</h1>
+        <h1 className='game__header'>{gameStarted ? 'Make your guess' : heading}</h1>
         <div className="game__game-nav" id="game-header">
             <label htmlFor="length">Word length</label>
             <input  type="number" min="4" max="6" className="game__drop-down" name="length" value={length} onChange={handleChange} disabled={gameStarted}/>

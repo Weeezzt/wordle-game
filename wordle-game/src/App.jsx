@@ -3,24 +3,40 @@ import StartGame  from './components/StartGame'
 import './App.css'
 import PlayGame from './components/PlayGame'
 import GameOver from './components/GameOver'
+import Reset from './components/Reset'
 
 function App() {
-  const [word, setWord] = useState('')
+  const [id, setId] = useState('')
   const [guess, setGuess] = useState('')
   const [guessCount, setGuessCount] = useState(0)
   const [win , setWin] = useState(false)
   const [unique, setUnique] = useState(false)
-  const [startTime , setStartTime] = useState(0)
-  const [endTime , setEndTime] = useState(0)
+  const [time , setTime] = useState(0)
+  const [length, setLength] = useState(4)
+  const [word, setWord] = useState('')
+  const [gameStarted, setGameStarted] = useState(false)
+
+  const setObject = {
+    setId: setId,
+    setGuess: setGuess,
+    setGuessCount: setGuessCount,
+    setWin: setWin,
+    setUnique: setUnique,
+    setTime: setTime,
+    setWord: setWord,
+    setLength: setLength,
+    setGameStarted: setGameStarted
+  }
 
 
   return (
     <>
         <div id="game">
-          <StartGame setWord={setWord} setUnique={setUnique} unique={unique} setStartTime={setStartTime}/>
-          <PlayGame word={word} setGuess={setGuess} guess={guess} setGuessCount={setGuessCount} setWin={setWin} setEndTime={setEndTime}/>
+          <StartGame gameStarted={gameStarted} setGameStarted={setGameStarted} setId={setId} length={length} setLength={setLength} setUnique={setUnique} unique={unique} />
+          <PlayGame gameStarted={gameStarted} setWord={setWord} length={length} id={id} setGuess={setGuess} guess={guess} setGuessCount={setGuessCount} setWin={setWin} setTime={setTime} />
         </div>
-        { win && <GameOver  guessCount={guessCount} word={word} unique={unique} setWin={setWin} startTime={startTime} endTime={endTime}/>}
+        { win && <GameOver  word={word} guessCount={guessCount} id={id} unique={unique} win={win} setWin={setWin} time={time} length={length} setObject={setObject}/>}
+        <Reset setObject={setObject}>Give up</Reset>
     </>
   )
 }

@@ -1,9 +1,7 @@
 import { useState } from "react";
 
-export default function PlayGame({word, setGuess, guess, setWin, setGuessCount, setEndTime}) {
+export default function PlayGame({gameStarted, length, id, setGuess, guess, win, setWin, setGuessCount, setTime, setWord}) {
     const [guessListElement, setGuessListElement] = useState([])
-    const [won, setWon] = useState(false)
-    const length = word.length
 
     function handleInputChange(event) {
         setGuess(event.target.value);
@@ -17,17 +15,17 @@ export default function PlayGame({word, setGuess, guess, setWin, setGuessCount, 
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({guess: newGuess, word: word})
+            body: JSON.stringify({guess: newGuess, gameID: id})
         })
         .then(response => response.json())
         .then(data => {
             setGuessListElement(prevGuesses => [...prevGuesses, data.newFeedback])
             setGuessCount(prevCount => prevCount + 1)
-            if(newGuess === word && newGuess !== ''){
+            if(data.time) {
+                setTime(data.time)
+                setWord(data.word)
                 setWin(true)
-                setWon(true)
-                setEndTime(Date.now())
-            } 
+            }
             setGuess('')
         })
         
@@ -58,8 +56,8 @@ export default function PlayGame({word, setGuess, guess, setWin, setGuessCount, 
                 </ul>
             </div>
             <div className="game__guesses">
-                <input type="text" className="guess-input" value={guess} maxLength={length} onChange={handleInputChange} disabled={won} onKeyDown={(e) => e.key === 'Enter' ? guessHandler() : null}/>
-                <button className="guess-button" onClick={guessHandler}  disabled={won}>Guess</button>
+                <input type="text" className="guess-input" value={guess} maxLength={length} onChange={handleInputChange} disabled={!gameStarted} onKeyDown={(e) => e.key === 'Enter' ? guessHandler() : null}/>
+                <button className="guess-button" onClick={guessHandler}  disabled={!gameStarted}>Guess</button>
             </div>
         </>
     )

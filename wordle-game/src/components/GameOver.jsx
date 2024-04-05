@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-export default function GameOver({guessCount, word, unique, startTime, endTime}) {
+export default function GameOver({setObject, word, guessCount, unique, time, length}) {
     const [name, setName] = useState('');
 
     function handleSubmit() {
         const scoreInfo = {
             name: name,
             guesses: guessCount,
-            time: ((endTime - startTime) / 1000).toFixed(2),
+            time: time.toFixed(2),
             unique: unique,
-            wordLength: word.length,
+            wordLength: length,
             word: word
         };
         fetch('/api/scores', {
@@ -22,7 +22,22 @@ export default function GameOver({guessCount, word, unique, startTime, endTime})
         .then(response => response.json())
         .then(data => {
             console.log('Succces', data);
-            window.location.reload()
+        })
+
+        fetch('/api/delete/all', {
+            method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Deleted all', data);
+
+            setObject.setTime(0);
+            setObject.setGuess('');
+            setObject.setGuessCount(0);
+            setObject.setLength(4);
+            setObject.setId('');
+            setObject.setUnique(false);
+            setObject.setGameStarted(false);
         })
     }
 
@@ -32,16 +47,15 @@ export default function GameOver({guessCount, word, unique, startTime, endTime})
 
 
     return (
-        <>
-            
+        <>          
             <div id="game-over">
                 <h1>Congratulations</h1>
                 <ul className='game-over-list'>
+                    <li className='game-over-li'>The word was {word}</li>
                     <li className='game-over-li'>You have guessed the word in {guessCount} guesses</li>
-                    <li className='game-over-li'>This took you {((endTime - startTime) / 1000).toFixed(2)} seconds</li>
+                    <li className='game-over-li'>This took you {time.toFixed(2)} seconds</li>
                     <li className='game-over-li'>Unique letter: {unique ? 'yes' : 'no'}</li>
-                    <li className='game-over-li'>The length of the word: {word.length}</li>
-                    <li className='game-over-li'>The word: {word}</li>
+                    <li className='game-over-li'>The length of the word: {length}</li>
                 </ul>
                 <form className="submit-div" onSubmit={e => { e.preventDefault(); if (name != '')   handleSubmit(); }}>
                     <label htmlFor="name">Enter name</label>
