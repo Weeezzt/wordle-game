@@ -82,6 +82,7 @@ export const feedbackController = async (req, res) => {
             const time = (endTime - game.StartTime) / 1000;
             return res.status(200).json({ newFeedback, time, word: game.word })
         }
+        console.log(newFeedback)
         res.status(200).json({ newFeedback })
     } catch (error) {
         res.status(500).json({msg:error.message})
@@ -111,8 +112,13 @@ export const deleteGame = async (req, res) => {
 export const deleteEveryGame = async (req, res) => {
     try {
         const gameCount = await Game.countDocuments({})
-        if(gameCount > 15) {
-            await Game.deleteMany({})
+        console.log(gameCount)
+
+        const firstTenGames = await Game.find({}).limit(10)
+        const firstTenGameIds = firstTenGames.map(game => game._id);
+
+        if(gameCount > 20) {
+            await Game.deleteMany({_id: {$in: firstTenGameIds}})
             res.status(200).json({msg: 'All games deleted'})
         } else {
             res.status(200).json({msg: 'No games to delete'})

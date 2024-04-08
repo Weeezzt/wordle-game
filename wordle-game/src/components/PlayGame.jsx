@@ -1,7 +1,5 @@
-import { useState } from "react";
 
-export default function PlayGame({gameStarted, length, id, setGuess, guess, win, setWin, setGuessCount, setTime, setWord}) {
-    const [guessListElement, setGuessListElement] = useState([])
+export default function PlayGame({setObject, gameStarted, length, id, setGuess, guess, win, setWin, setGuessCount, setTime, setWord, guessListElement, setGuessListElement}) {
 
     function handleInputChange(event) {
         setGuess(event.target.value);
@@ -9,6 +7,10 @@ export default function PlayGame({gameStarted, length, id, setGuess, guess, win,
 
     function guessHandler(){
         const newGuess = guess.toUpperCase()
+        if(newGuess.length != length){
+            return
+        } 
+        
 
         fetch('/api/feedback', {
             method: 'POST',
@@ -20,6 +22,7 @@ export default function PlayGame({gameStarted, length, id, setGuess, guess, win,
         .then(response => response.json())
         .then(data => {
             setGuessListElement(prevGuesses => [...prevGuesses, data.newFeedback])
+            console.log(data.newFeedback)
             setGuessCount(prevCount => prevCount + 1)
             if(data.time) {
                 setTime(data.time)
@@ -29,6 +32,18 @@ export default function PlayGame({gameStarted, length, id, setGuess, guess, win,
             setGuess('')
         })
         
+    }
+
+    function reset(){
+        setObject.setTime(0)
+        setObject.setGuess('')
+        setObject.setGuessCount(0)
+        setObject.setLength(4)
+        setObject.setId('')
+        setObject.setUnique(false)
+        setObject.setGameStarted(false)
+
+        setGuessListElement([])
     }
 
     
@@ -43,10 +58,11 @@ export default function PlayGame({gameStarted, length, id, setGuess, guess, win,
                         return(
                         <ul key={guessIndex} className="game__guess-list">
                         {guess.map((item, letterIndex) => {
-                        const letter = Object.keys(item)[0];
+                        const letter = item.letter;
+                        const result = item.result;
                         const index = `${guessIndex}-${letterIndex}`
                         return(
-                        <li key={index} className={`game__letter ${item[letter] === 'correct' ? 'green' : item[letter] === 'misplaced' ? 'yellow' : ''}`} >
+                        <li key={index} className={`game__letter ${result === 'correct' ? 'green' : result === 'misplaced' ? 'yellow' : ''}`} >
                             {letter}   
                         </li>
                         )
@@ -59,6 +75,7 @@ export default function PlayGame({gameStarted, length, id, setGuess, guess, win,
                 <input type="text" className="guess-input" value={guess} maxLength={length} onChange={handleInputChange} disabled={!gameStarted} onKeyDown={(e) => e.key === 'Enter' ? guessHandler() : null}/>
                 <button className="guess-button" onClick={guessHandler}  disabled={!gameStarted}>Guess</button>
             </div>
+            <button className='reset-button' onClick={reset}>Give Up</button>
         </>
     )
 }

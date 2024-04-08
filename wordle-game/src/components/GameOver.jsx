@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function GameOver({setObject, word, guessCount, unique, time, length}) {
+export default function GameOver({setGuessListElement, setObject, word, guessCount, unique, time, length}) {
     const [name, setName] = useState('');
 
     function handleSubmit() {
@@ -22,6 +22,17 @@ export default function GameOver({setObject, word, guessCount, unique, time, len
         .then(response => response.json())
         .then(data => {
             console.log('Succces', data);
+            setObject.setTime(0);
+            setObject.setGuess('');
+            setObject.setGuessCount(0);
+            setObject.setLength(4);
+            setObject.setId('');
+            setObject.setUnique(false);
+            setObject.setGameStarted(false);
+
+            setGuessListElement([]);
+            setName('')
+
         })
 
         fetch('/api/delete/all', {
@@ -30,14 +41,6 @@ export default function GameOver({setObject, word, guessCount, unique, time, len
         .then(response => response.json())
         .then(data => {
             console.log('Deleted all', data);
-
-            setObject.setTime(0);
-            setObject.setGuess('');
-            setObject.setGuessCount(0);
-            setObject.setLength(4);
-            setObject.setId('');
-            setObject.setUnique(false);
-            setObject.setGameStarted(false);
         })
     }
 
@@ -48,7 +51,7 @@ export default function GameOver({setObject, word, guessCount, unique, time, len
 
     return (
         <>          
-            <div id="game-over">
+            <div id="game-over" style={time === 0 ? { display: 'none' }: {}}>
                 <h1>Congratulations</h1>
                 <ul className='game-over-list'>
                     <li className='game-over-li'>The word was {word}</li>
@@ -59,7 +62,7 @@ export default function GameOver({setObject, word, guessCount, unique, time, len
                 </ul>
                 <form className="submit-div" onSubmit={e => { e.preventDefault(); if (name != '')   handleSubmit(); }}>
                     <label htmlFor="name">Enter name</label>
-                    <input name="name" type="text" className="game-over-input" required onChange={handleName}/>
+                    <input name="name" value={name} type="text" className="game-over-input" required onChange={handleName}/>
                     <button className="game-over-button" type="submit">Submit</button>
                 </form>
             </div>

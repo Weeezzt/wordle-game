@@ -67,22 +67,22 @@ const feedback = (word, guess) => {
     //Checking for correct letters in correct position
     for(let i = 0; i < wordArr.length; i++) {
         if(guessArr[i] === wordArr[i]) {
-            result.push({ [guessArr[i]]: 'correct' })
+            result.push({ letter: guessArr[i], result: 'correct' })
             wordCount[guessArr[i]]--
             guessCount[guessArr[i]]--
 
             //if the letter count is below zero then one misplaced letter should be incorrect instead, so we change it
             if(wordCount[guessArr[i]] < 0){
-                result.find(obj => obj[guessArr[i]] === 'misplaced')[guessArr[i]] = 'incorrect'
+                result.find(obj => obj.letter === guessArr[i] && obj.result === 'misplaced' ).result = 'incorrect'
             }
 
           //Checking for correct letters in incorrect position  
         } else if(wordCount[guessArr[i]] > 0) {
-            result.push({ [guessArr[i]]: 'misplaced' })
+            result.push({ letter: guessArr[i], result: 'misplaced' })
             wordCount[guessArr[i]]--
             guessCount[guessArr[i]]--
         } else {
-            result.push({ [guessArr[i]]: 'incorrect' })
+            result.push({ letter: guessArr[i], result: 'incorrect' })
         }
     } 
 
