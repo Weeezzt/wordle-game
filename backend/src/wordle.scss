@@ -1,3 +1,8 @@
+.body-wordle {
+    min-height: 100vh;
+    overflow: auto;
+}
+
 .container {
     margin-left:auto;
     margin-right:auto;
@@ -6,8 +11,8 @@
     gap: 5%;
     justify-content: flex-start;
     align-items: center;
-    height: 72vh;
     width: 80vw;
+    min-height: 72vh;
     color: white;
     font-family: 'Roboto', sans-serif;
 }
