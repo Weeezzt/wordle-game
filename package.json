@@ -8,7 +8,8 @@
     "sass:watch": "sass --no-source-map --watch backend/src/main.scss backend/public/main.css",
     "sass:compile": "sass --no-source-map backend/src/main.scss backend/public/main.css",
     "dev": "nodemon app.js",
-    "both2": " concurrently \"npm run dev\" \"npm run sass:watch\""
+    "both2": " concurrently \"npm run dev\" \"npm run sass:watch\"",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_TLS_REJECT_UNAUTHORIZED='0' jest"
   },
   "author": "",
   "license": "ISC",
@@ -22,7 +23,13 @@
     "sass": "^1.72.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "express-async-errors": "^3.1.1",
+    "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
     "nodemon": "^3.1.0"
+  },
+  "jest": {
+    "transform": {}
   }
 }

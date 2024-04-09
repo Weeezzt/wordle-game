@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 html {
   font-family: 'Roboto Slab', sans-serif;
   line-height: 1.5;
@@ -30,10 +36,10 @@ a:hover {
 }
 
 body {
-  height: 100vh;
-  background: rgb(2,0,36);
+  min-height: 100%;
   background: linear-gradient(300deg, rgba(2,0,36,1) 0%, rgba(66,0,80,1) 34%, rgba(88,15,115,1) 60%, rgba(103,7,143,1) 77%, rgba(111,19,148,1) 92%);
   margin:0;
+  overflow: auto;
 }
 
 h1 {
@@ -67,60 +73,11 @@ button:disabled:hover {
 #root{
   margin-top: 0;
   width: 100%;
-  height: 100%;
+  height: 80%;
   padding:0;
 }
 
-.game-header {
-  display: flex;
-  padding-top: 20px;
-  justify-content: space-between;
-  width: 100%;
-  height: 15vh;
-  margin-top: 0;
-}
 
-
-.logo {
-  margin:0;
-  padding: 0;
-  width: 15%;
-}
-
-.game-header__heading {
-  font-size: 3em;
-  font-weight: 700;
-  margin:0;
-  padding: 0;
-}
-
-.game-header__nav {
-  margin:0;
-  padding: 0;
-  width: 50%;
-}
-.game-header__list{
-  margin:0;
-  padding: 0;
-  width: 100%;
-  list-style: none;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.game-header__list-item {
-  font-size: 1.5em;
-  font-weight: 500;
-  width: 33%;
-  cursor: pointer;
-  border: none;
-}
-
-.game-header__list-item:hover {
-  border: solid 3px #7625b4;
-  transform: scale(1.02);
-  transition: transform 0.25s;
-}
 
 #game {
   margin-left: auto;
@@ -138,6 +95,15 @@ button:disabled:hover {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+
+@media screen and (max-width: 680px){
+  .game__game-nav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 20vh;
+  }
 }
 
 .game__header{
@@ -160,6 +126,15 @@ button:disabled:hover {
   width: 100%;
   display: flex;
   gap: 10px;
+}
+
+@media screen and (max-width: 600px){
+  .game__guesses {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 10vh;
+  }
 }
 
 .guess-input {
