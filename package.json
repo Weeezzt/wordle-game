@@ -7,7 +7,7 @@
   "scripts": {
     "sass:watch": "sass --no-source-map --watch backend/src/main.scss backend/public/main.css",
     "sass:compile": "sass --no-source-map backend/src/main.scss backend/public/main.css",
-    "dev": "nodemon app.js",
+    "start": "nodemon app.js",
     "both2": " concurrently \"npm run dev\" \"npm run sass:watch\"",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_TLS_REJECT_UNAUTHORIZED='0' jest"
   },
