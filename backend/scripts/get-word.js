@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-const API = 'https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json'; 
+const API = "https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json";
 
 export default async function getWordList() {
     const res = await fetch(API);
@@ -11,5 +11,5 @@ export default async function getWordList() {
         const data = await res.json();
         const words = Object.keys(data);
         return words;
-}
+    }
 }

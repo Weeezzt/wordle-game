@@ -1,62 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.css">
     <title>HighScores</title>
 </head>
+
 <body>
     <%- include('./partials/header.ejs') %>
-    <main class="highscore-container">
-        <div class="hero">
-            <h1>High Scores</h1>
-        </div>
-        <div class="sub-titles">
-            <h3>Four letter words</h3>
-            <h3>Five letter words</h3>
-            <h3>Six letter words</h3>
-        </div>
-        <div class="highscore">
+        <main class="highscore-container">
+            <div class="hero">
+                <h1>High Scores</h1>
+            </div>
+            <div class="sub-titles">
+                <h3>Four letter words</h3>
+                <h3>Five letter words</h3>
+                <h3>Six letter words</h3>
+            </div>
+            <div class="highscore">
                 <ul class="highscore__list">
                     <% highScoreFour.forEach(function(score) { %>
-                            <li class="highscore__list-item"><%= score.name %></li>
-                            <ul>
-                                <li>You found the word: <%= score.word %></li>
-                                <li>It took <%= score.guesses %> guesses</li>
-                                <li>Word length: <%= score.wordLength %></li>
-                                <li> Total time elapsed: <%= score.time %></li>
-                                <li><%= score.unique === true ? 'Only unique letters' : 'Mixed letters' %></li>
-                            </ul>
-                    <% }); %>
+                        <li class="highscore__list-item">
+                            <%= score.name %>
+                        </li>
+                        <ul>
+                            <li>You found the word: <%= score.word %>
+                            </li>
+                            <li>It took <%= score.guesses %> guesses</li>
+                            <li>Word length: <%= score.wordLength %>
+                            </li>
+                            <li> Total time elapsed: <%= score.time %>
+                            </li>
+                            <li>
+                                <%= score.unique===true ? 'Only unique letters' : 'Mixed letters' %>
+                            </li>
+                        </ul>
+                        <% }); %>
                 </ul>
                 <ul class="highscore__list">
                     <% highScoreFive.forEach(function(score) { %>
-                            <li class="highscore__list-item"><%= score.name %></li>
-                            <ul>
-                                <li>You found the word: <%= score.word %></li>
-                                <li>It took <%= score.guesses %> guesses</li>
-                                <li>Word length: <%= score.wordLength %></li>
-                                <li> Total time elapsed: <%= score.time %></li>
-                                <li><%= score.unique === true ? 'Only unique letters' : 'Mixed letters' %></li>
-                            </ul>
-                    <% }); %>
+                        <li class="highscore__list-item">
+                            <%= score.name %>
+                        </li>
+                        <ul>
+                            <li>You found the word: <%= score.word %>
+                            </li>
+                            <li>It took <%= score.guesses %> guesses</li>
+                            <li>Word length: <%= score.wordLength %>
+                            </li>
+                            <li> Total time elapsed: <%= score.time %>
+                            </li>
+                            <li>
+                                <%= score.unique===true ? 'Only unique letters' : 'Mixed letters' %>
+                            </li>
+                        </ul>
+                        <% }); %>
                 </ul>
                 <ul class="highscore__list">
                     <% highScoreSix.forEach(function(score) { %>
-                            <li class="highscore__list-item"><%= score.name %></li>
-                            <ul>
-                                <li>You found the word: <%= score.word %></li>
-                                <li>It took <%= score.guesses %> guesses</li>
-                                <li>Word length: <%= score.wordLength %></li>
-                                <li> Total time elapsed: <%= score.time %></li>
-                                <li><%= score.unique === true ? 'Only unique letters' : 'Mixed letters' %></li>
-                            </ul>
-                    <% }); %>
+                        <li class="highscore__list-item">
+                            <%= score.name %>
+                        </li>
+                        <ul>
+                            <li>You found the word: <%= score.word %>
+                            </li>
+                            <li>It took <%= score.guesses %> guesses</li>
+                            <li>Word length: <%= score.wordLength %>
+                            </li>
+                            <li> Total time elapsed: <%= score.time %>
+                            </li>
+                            <li>
+                                <%= score.unique===true ? 'Only unique letters' : 'Mixed letters' %>
+                            </li>
+                        </ul>
+                        <% }); %>
                 </ul>
-        </div>
-        
-    </main>
-    <%- include('./partials/footer.ejs') %>
+            </div>
+
+        </main>
+        <%- include('./partials/footer.ejs') %>
 </body>
+
 </html>

@@ -9,23 +9,22 @@ dotenv.config();
 const app = express();
 
 // Creating the __filename and __dirname variables
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 const PORT = process.env.PORT || 5081;
 
-app.use(express.static(path.join(__dirname, './public')))
+app.use(express.static(path.join(__dirname, "./public")));
 
-app.use('/', router);
+app.use("/", router);
 
 // Await the connection to the database before starting the server
 const start = async () => {
@@ -37,6 +36,6 @@ const start = async () => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 start();

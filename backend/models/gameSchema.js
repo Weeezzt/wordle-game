@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const gameSchema = new mongoose.Schema({
     word: { type: String, required: true },
     StartTime: { type: Date, required: true },
 });
 
-const Game = mongoose.model('games', gameSchema);
+const Game = mongoose.model("games", gameSchema);
 
 export default Game;

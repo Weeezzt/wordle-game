@@ -1,9 +1,17 @@
 import { useState } from "react";
 
-export default function GameOver({setGuessListElement, setObject, word, guessCount, unique, time, length}) {
-    const [name, setName] = useState('');
+export default function GameOver({
+    setGuessListElement,
+    setObject,
+    word,
+    guessCount,
+    unique,
+    time,
+    length,
+}) {
+    const [name, setName] = useState("");
 
-    //When you click submit the score will be send to the database and 
+    //When you click submit the score will be send to the database and
     //if theres more than 20 games in the database, 10 will be deleted
     function handleSubmit() {
         const scoreInfo = {
@@ -12,62 +20,77 @@ export default function GameOver({setGuessListElement, setObject, word, guessCou
             time: time.toFixed(2),
             unique: unique,
             wordLength: length,
-            word: word
+            word: word,
         };
-        fetch('/api/scores', {
-            method: 'POST',
+        fetch("/api/scores", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(scoreInfo)
+            body: JSON.stringify(scoreInfo),
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Succces', data);
-            setObject.setTime(0);
-            setObject.setGuess('');
-            setObject.setGuessCount(0);
-            setObject.setLength(4);
-            setObject.setId('');
-            setObject.setUnique(false);
-            setObject.setGameStarted(false);
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Succces", data);
+                setObject.setTime(0);
+                setObject.setGuess("");
+                setObject.setGuessCount(0);
+                setObject.setLength(4);
+                setObject.setId("");
+                setObject.setUnique(false);
+                setObject.setGameStarted(false);
 
-            setGuessListElement([]);
-            setName('')
+                setGuessListElement([]);
+                setName("");
+            });
 
+        fetch("/api/delete/all", {
+            method: "DELETE",
         })
-
-        fetch('/api/delete/all', {
-            method: 'DELETE',
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Deleted all', data);
-        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Deleted all", data);
+            });
     }
 
     function handleName(e) {
         setName(e.target.value);
     }
 
-
     return (
-        <>          
-            <div id="game-over" style={time === 0 ? { display: 'none' }: {}}>
+        <>
+            <div id="game-over" style={time === 0 ? { display: "none" } : {}}>
                 <h1>Congratulations</h1>
-                <ul className='game-over-list'>
-                    <li className='game-over-li'>The word was {word}</li>
-                    <li className='game-over-li'>You have guessed the word in {guessCount} guesses</li>
-                    <li className='game-over-li'>This took you {time.toFixed(2)} seconds</li>
-                    <li className='game-over-li'>Unique letter: {unique ? 'yes' : 'no'}</li>
-                    <li className='game-over-li'>The length of the word: {length}</li>
+                <ul className="game-over-list">
+                    <li className="game-over-li">The word was {word}</li>
+                    <li className="game-over-li">
+                        You have guessed the word in {guessCount} guesses
+                    </li>
+                    <li className="game-over-li">This took you {time.toFixed(2)} seconds</li>
+                    <li className="game-over-li">Unique letter: {unique ? "yes" : "no"}</li>
+                    <li className="game-over-li">The length of the word: {length}</li>
                 </ul>
-                <form className="submit-div" onSubmit={e => { e.preventDefault(); if (name != '')   handleSubmit(); }}>
+                <form
+                    className="submit-div"
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        if (name != "") handleSubmit();
+                    }}
+                >
                     <label htmlFor="name">Enter name</label>
-                    <input name="name" value={name} type="text" className="game-over-input" required onChange={handleName}/>
-                    <button className="game-over-button" type="submit">Submit</button>
+                    <input
+                        name="name"
+                        value={name}
+                        type="text"
+                        className="game-over-input"
+                        required
+                        onChange={handleName}
+                    />
+                    <button className="game-over-button" type="submit">
+                        Submit
+                    </button>
                 </form>
             </div>
         </>
-    )
+    );
 }

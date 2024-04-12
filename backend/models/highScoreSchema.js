@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const highScoreSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -6,11 +6,9 @@ const highScoreSchema = new mongoose.Schema({
     time: { type: Number, required: true },
     unique: { type: Boolean, required: true },
     wordLength: { type: Number, required: true },
-    word: { type: String, required: true }
-})
+    word: { type: String, required: true },
+});
 
-const HighScore = mongoose.model('highscores', highScoreSchema);
+const HighScore = mongoose.model("highscores", highScoreSchema);
 
 export default HighScore;
-
-
