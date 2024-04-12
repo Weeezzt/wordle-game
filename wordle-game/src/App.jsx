@@ -4,6 +4,7 @@ import PlayGame from './components/PlayGame'
 import GameOver from './components/GameOver'
 
 function App() {
+  // State variables
   const [id, setId] = useState('')
   const [guess, setGuess] = useState('')
   const [guessCount, setGuessCount] = useState(0)
@@ -15,6 +16,7 @@ function App() {
   const [gameStarted, setGameStarted] = useState(false)
   const [guessListElement, setGuessListElement] = useState([])
 
+  //Object with state variable so that i can reset the game
   const setObject = {
     setId: setId,
     setGuess: setGuess,

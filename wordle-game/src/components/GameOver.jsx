@@ -3,6 +3,8 @@ import { useState } from "react";
 export default function GameOver({setGuessListElement, setObject, word, guessCount, unique, time, length}) {
     const [name, setName] = useState('');
 
+    //When you click submit the score will be send to the database and 
+    //if theres more than 20 games in the database, 10 will be deleted
     function handleSubmit() {
         const scoreInfo = {
             name: name,

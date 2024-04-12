@@ -3,7 +3,7 @@ import { feedback, chooseWord } from '../scripts/start-game.js';
 import HighScore from '../models/highScoreSchema.js';
 import Game from "../models/gameSchema.js";
 
-
+// Get the About us page
 export const aboutUsController = async (req, res) => {
     try {
         
@@ -13,6 +13,7 @@ export const aboutUsController = async (req, res) => {
     }
 }
 
+// Get the Wordle page  
 export const wordleController = async (req, res) => {
     try {
         
@@ -22,6 +23,8 @@ export const wordleController = async (req, res) => {
     }
 }
 
+
+// Get the HighScore page and make three lists of highscores for wordlength 4, 5 and 6
 export const HighScoreController = async (req, res) => {
     try {
         
@@ -35,6 +38,7 @@ export const HighScoreController = async (req, res) => {
     }
 }
 
+//Get the correct word and create a new Game in the database with the correct word, send game id back to the frontend
 export const getCorrectWord = async (req, res) => {
     try {
         const wordList = await getWordList();
@@ -55,6 +59,7 @@ export const getCorrectWord = async (req, res) => {
     }
 }
 
+// Add a new HighScore to the database
 export const addHighScore = async (req, res) => {
     try {
         const NewHighScore = await HighScore.create(req.body)
@@ -64,6 +69,7 @@ export const addHighScore = async (req, res) => {
     }
 }
 
+// Get the feedback for the guess and check if the guess is correct, if send the time and word back to the frontend
 export const feedbackController = async (req, res) => {
     try {
         const gameId = req.body.gameID;
@@ -89,6 +95,7 @@ export const feedbackController = async (req, res) => {
     }
 }
 
+//Delete specific highscore
 export const deleteHighScore = async (req, res) => {
     try {
         const id = req.params.id;
@@ -99,6 +106,7 @@ export const deleteHighScore = async (req, res) => {
     }
 }
 
+//Delete specific game
 export const deleteGame = async (req, res) => {
     try {
         const id = req.params.id;
@@ -109,6 +117,7 @@ export const deleteGame = async (req, res) => {
     }
 }
 
+//Delete the first ten games if there are more than 20 games in the database
 export const deleteEveryGame = async (req, res) => {
     try {
         const gameCount = await Game.countDocuments({})

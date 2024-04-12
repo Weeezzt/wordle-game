@@ -6,14 +6,16 @@ import dotenv from "dotenv";
 import { connectDb } from "./db/connect.js";
 dotenv.config();
 
+const app = express();
+
+// Creating the __filename and __dirname variables
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const app = express();
 
+// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set('view engine', 'ejs');
@@ -25,6 +27,7 @@ app.use(express.static(path.join(__dirname, './public')))
 
 app.use('/', router);
 
+// Await the connection to the database before starting the server
 const start = async () => {
     try {
         await connectDb(process.env.MONGO_URI);

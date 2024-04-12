@@ -13,6 +13,7 @@ export default function StartGame({gameStarted, setGameStarted, length, setLengt
 
     let heading = 'Wordle'
 
+    // Starting the game with the chosen difficulty
     function startingGameHandler() {
         fetch(`/api/words?length=${length}&unique=${unique}`)
         .then(response  => response.json())

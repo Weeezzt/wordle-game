@@ -5,6 +5,7 @@ export default function PlayGame({setObject, gameStarted, length, id, setGuess, 
         setGuess(event.target.value);
     }
 
+    //Send the guess to the backend and get the feedback
     function guessHandler(){
         const newGuess = guess.toUpperCase()
         if(newGuess.length != length){
@@ -34,6 +35,7 @@ export default function PlayGame({setObject, gameStarted, length, id, setGuess, 
         
     }
 
+    //Reset the game
     function reset(){
         setObject.setTime(0)
         setObject.setGuess('')
